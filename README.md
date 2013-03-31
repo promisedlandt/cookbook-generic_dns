@@ -37,6 +37,7 @@ end
 
 # Apply the google mail template to add MX records and a TXT spf record
 generic_dns_template "google_mail" do
+  domain "example.com"
   aws_access_key_id     "ASDASDASDASD"
   aws_secret_access_key "GSDFGSDFDFGF"
 end
