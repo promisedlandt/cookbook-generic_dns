@@ -1,5 +1,5 @@
 action :create_or_update do
-  dns_provider = new_resource.dns_provider ? new_resource.dns_provider : node[:generic_dns][:default_dns_provider]
+  dns_provider = new_resource.dns_provider || node[:generic_dns][:default_dns_provider]
 
   case dns_provider.to_sym
   when :amazon

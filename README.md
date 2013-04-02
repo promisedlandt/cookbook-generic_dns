@@ -120,10 +120,56 @@ aws_secret_access_key | Your AWS secret access key. Amazon only | String
 dnsimple_username | Username for your DNSimple account. DNSimple only | String
 dnsimple_password | Password for your DNSimple account. DNSimple only | String
 
-
 ### Actions
 
 Name | Description | Default
 -----|-------------|--------
 create_or_update | Create or update the record | yes
+
+## generic_dns_from_databag
+
+Sets up DNS records and templates from a data bag.
+
+The data bag items need the following structure:
+
+```
+{
+  "id": "example_com",
+  "domain_name": "example.com",
+  "templates": [
+    "google_mail"
+  ],
+  "records": [
+    { "name": "promisedlandt.de",
+      "content": "192.168.1.1" },
+    { "name": "subdomain1",
+      "type": "AAAA",
+      "ttl": 3600,
+      "content": "2001:0db8:0000:0000:0000:ff00:0042:8329" }
+  ]
+}
+```
+
+You can authenticate either by passing the usual attributes, or from an encrypted data bag.  
+If you decide to go the data bag route, for AWS, you need the keys "aws_access_key_id" and "aws_secret_access_key".  
+For DNSimple, you need "login" and "password".
+
+### Attributes
+
+Attribute | Description | Type | Default
+----------|-------------|------|--------
+dns_provider | Which DNS provider to use, overrides node attribute | String, Symbol | 
+dns_data_bag_name | Name of the data bag you store your DNS info in | String | name
+credentials_data_bag_name | Name of the data bag your credentials are stored it (if you don't specify them directly) | String |
+credentials_data_bag_item | Item in your credentials data bag | String |
+aws_access_key_id | Your AWS access key ID. Amazon only | String
+aws_secret_access_key | Your AWS secret access key. Amazon only | String
+dnsimple_username | Username for your DNSimple account. DNSimple only | String
+dnsimple_password | Password for your DNSimple account. DNSimple only | String
+
+### Actions
+
+Name | Description | Default
+-----|-------------|--------
+create_or_update | Create or update the records / templates | yes
 
