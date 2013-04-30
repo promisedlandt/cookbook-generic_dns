@@ -1,6 +1,6 @@
 # generic_dns
 
-Provides a LWRPs to manage DNS records, using Amazon Route 53 or DNSimple.
+Provides a set of LWRPs to manage DNS records, using Amazon Route 53 or DNSimple.
 
 Also provides DNS templates for commonly used services, such as Google Mail.
 
